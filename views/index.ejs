@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-xl-10">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="row g-0">
+                <!-- Order Details Sidebar -->
+                <div class="col-md-4 bg-light border-end">
+                    <%- include('partials/order-details', { 
+                        transaction: transaction,
+                        orderDetails: locals.orderDetails,
+                        logoUrl: locals.logoUrl 
+                    }) %>
+                </div>
+
+                <!-- Payment Content -->
+                <div class="col-md-8">
+                    <%- include('partials/payment-tabs', { 
+                        cryptoAddresses: locals.cryptoAddresses 
+                    }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/modals/payment-status') %>

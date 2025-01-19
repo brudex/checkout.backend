@@ -1,0 +1,41 @@
+<div class="crypto-payment p-3">
+    <div class="mb-3">
+        <label class="form-label">Select Cryptocurrency</label>
+        <select class="form-select" id="cryptoSelect">
+            <option value="USDT" selected>USDT (Tether)</option>
+            <option value="BTC">BTC (Bitcoin)</option>
+            <option value="ETH">ETH (Ethereum)</option>
+        </select>
+        
+        <!-- Warning Message -->
+        <div class="mt-2 p-2 rounded-3 bg-warning bg-opacity-10 border border-warning border-opacity-25">
+            <p class="mb-0 text-dark small" id="cryptoWarning">
+                <i data-lucide="alert-triangle" class="size-4 text-warning me-1"></i>
+                Please send only USDT to this address. Sending any other cryptocurrency may result in permanent loss.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-light rounded-3 p-3">
+        <p class="text-muted mb-3">Send your payment to the following address:</p>
+        
+        <div class="text-center mb-3">
+            <div id="qrcode" class="bg-white d-inline-block p-3 rounded-3 shadow-sm">
+                <!-- QR code will be generated here -->
+            </div>
+            <small class="text-muted d-block mt-2">Scan QR code to pay</small>
+        </div>
+        
+        <div class="bg-white rounded-3 p-2 shadow-sm">
+            <div class="d-flex align-items-center gap-2">
+                <code class="flex-grow-1 text-break small" id="cryptoAddress"></code>
+                <button class="btn btn-sm btn-crypto" id="copyAddressBtn" title="Copy address">
+                    <i data-lucide="copy" class="size-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden input with crypto addresses -->
+    <input type="hidden" id="cryptoAddressesData" value='<%- JSON.stringify(locals.cryptoAddresses || {}) %>'>
+</div>

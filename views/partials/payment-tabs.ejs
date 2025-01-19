@@ -1,0 +1,80 @@
+<div class="payment-interface">
+    <!-- Payment Tabs -->
+    <div class="border-bottom">
+        <div class="p-3">
+            <ul class="nav nav-pills nav-fill" id="paymentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" 
+                            id="visa-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#visa-content" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="visa-content" 
+                            aria-selected="true">
+                        <i data-lucide="credit-card" class="me-2"></i>
+                        <span>Card Payment</span>
+                    </button>
+                </li>
+                
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" 
+                            id="mobile-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#mobile-content" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="mobile-content" 
+                            aria-selected="false">
+                        <i data-lucide="smartphone" class="me-2"></i>
+                        <span>Mobile Money</span>
+                    </button>
+                </li>
+                
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" 
+                            id="crypto-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#crypto-content" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="crypto-content" 
+                            aria-selected="false">
+                        <i data-lucide="bitcoin" class="me-2"></i>
+                        <span>Crypto</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content p-4" id="paymentTabsContent">
+        <!-- Visa Content -->
+        <div class="tab-pane fade show active" id="visa-content" role="tabpanel" aria-labelledby="visa-tab">
+            <%- include('payment-modes/visa') %>
+            <button class="btn btn-visa w-100 mt-4" type="submit">
+                <i data-lucide="credit-card" class="me-2"></i>
+                Pay with Card
+            </button>
+        </div>
+        
+        <!-- Mobile Money Content -->
+        <div class="tab-pane fade" id="mobile-content" role="tabpanel" aria-labelledby="mobile-tab">
+            <%- include('payment-modes/mobile-money') %>
+            <button class="btn btn-mobile w-100 mt-4" type="submit">
+                <i data-lucide="smartphone" class="me-2"></i>
+                Pay with Mobile Money
+            </button>
+        </div>
+        
+        <!-- Crypto Content -->
+        <div class="tab-pane fade" id="crypto-content" role="tabpanel" aria-labelledby="crypto-tab">
+            <%- include('payment-modes/crypto', { cryptoAddresses: cryptoAddresses }) %>
+            <button class="btn btn-crypto w-100 mt-4" type="submit">
+                <i data-lucide="bitcoin" class="me-2"></i>
+                Pay with Crypto
+            </button>
+        </div>
+    </div>
+</div>

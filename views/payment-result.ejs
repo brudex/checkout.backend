@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-body p-5 text-center">
+                <!-- Result Icon -->
+                <% if (transaction.paymentStatus === 'COMPLETED') { %>
+                    <i data-lucide="check-circle" class="result-icon success animate-success"></i>
+                    <h1 class="h3 mb-3">Payment Successful!</h1>
+                    <p class="text-muted mb-4">Your payment has been processed successfully.</p>
+                <% } else { %>
+                    <i data-lucide="x-circle" class="result-icon error animate-success"></i>
+                    <h1 class="h3 mb-3">Payment Failed</h1>
+                    <p class="text-muted mb-4">
+                        <%= transaction.statusMessage || 'There was an error processing your payment. Please try again.' %>
+                    </p>
+                <% } %>
+
+                <!-- Transaction Details -->
+                <div class="transaction-details rounded-3 p-4 mb-4">
+                    <div class="row g-3">
+                        <div class="col-sm-6 text-start">
+                            <p class="small text-muted mb-1">Transaction ID</p>
+                            <p class="font-monospace mb-0"><%= transaction.transactionId %></p>
+                        </div>
+                        <div class="col-sm-6 text-start">
+                            <p class="small text-muted mb-1">Amount</p>
+                            <p class="fw-semibold mb-0">
+                                <%= new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: transaction.currency || 'USD'
+                                }).format(transaction.amount) %>
+                            </p>
+                        </div>
+                        <% if (transaction.email) { %>
+                            <div class="col-sm-6 text-start">
+                                <p class="small text-muted mb-1">Email</p>
+                                <p class="mb-0"><%= transaction.email %></p>
+                            </div>
+                        <% } %>
+                        <% if (transaction.orderId) { %>
+                            <div class="col-sm-6 text-start">
+                                <p class="small text-muted mb-1">Order ID</p>
+                                <p class="mb-0"><%= transaction.orderId %></p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <% if (transaction.paymentStatus === 'COMPLETED') { %>
+                    <a href="/" class="btn btn-primary">
+                        <i data-lucide="home" class="size-4 me-2"></i>
+                        Return Home
+                    </a>
+                <% } else { %>
+                    <a href="/trxn/<%= transaction.transactionId %>" class="btn btn-primary">
+                        <i data-lucide="refresh-ccw" class="size-4 me-2"></i>
+                        Try Again
+                    </a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+/* Base styles */
+:root {
+    --color-visa: #3b82f6;
+    --color-mobile: #f59e0b;
+    --color-crypto: #22c55e;
+}
+
+body {
+    background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Payment tabs styling */
+.nav-pills .nav-link {
+    color: #64748b;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.25rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Tab-specific colors */
+.nav-pills .nav-link[data-bs-target="#visa-content"].active {
+    background-color: var(--color-visa);
+    color: white;
+}
+
+.nav-pills .nav-link[data-bs-target="#mobile-content"].active {
+    background-color: var(--color-mobile);
+    color: white;
+}
+
+.nav-pills .nav-link[data-bs-target="#crypto-content"].active {
+    background-color: var(--color-crypto);
+    color: white;
+}
+
+/* Button styles */
+.btn-visa {
+    background-color: var(--color-visa);
+    border: none;
+    color: white;
+}
+
+.btn-mobile {
+    background-color: var(--color-mobile);
+    border: none;
+    color: white;
+}
+
+.btn-crypto {
+    background-color: var(--color-crypto);
+    border: none;
+    color: white;
+}
+
+.btn-visa:hover,
+.btn-mobile:hover,
+.btn-crypto:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    color: white;
+}
+
+/* Form controls */
+.form-control:focus {
+    border-color: var(--color-visa);
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+}
+
+/* Mode-specific form control focus states */
+#mobile-content .form-control:focus,
+#mobile-content .form-select:focus {
+    border-color: var(--color-mobile);
+    box-shadow: 0 0 0 0.25rem rgba(245, 158, 11, 0.25);
+}
+
+#crypto-content .form-control:focus,
+#crypto-content .form-select:focus {
+    border-color: var(--color-crypto);
+    box-shadow: 0 0 0 0.25rem rgba(34, 197, 94, 0.25);
+}
+
+/* Rest of your existing styles... */

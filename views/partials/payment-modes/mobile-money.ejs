@@ -1,0 +1,89 @@
+<div class="mobile-money-form" x-data="{
+    countries: [
+        {
+            code: 'GH',
+            name: 'Ghana',
+            dialCode: '+233',
+            flagUrl: 'https://flagcdn.com/gh.svg',
+            networks: ['MTN', 'Vodafone', 'AirtelTigo']
+        },
+        {
+            code: 'KE',
+            name: 'Kenya',
+            dialCode: '+254',
+            flagUrl: 'https://flagcdn.com/ke.svg',
+            networks: ['Safaricom', 'Airtel', 'Telkom']
+        },
+        {
+            code: 'SZ',
+            name: 'Eswatini',
+            dialCode: '+268',
+            flagUrl: 'https://flagcdn.com/sz.svg',
+            networks: ['MTN']
+        }
+    ],
+    selectedCountry: null,
+    selectedNetwork: '',
+    phoneNumber: '',
+    init() {
+        this.selectedCountry = this.countries[0];
+        this.selectedNetwork = this.countries[0].networks[0];
+    }
+}">
+    <div class="mb-3">
+        <label class="form-label">Select Country</label>
+        <div class="dropdown">
+            <button 
+                class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100"
+                type="button"
+                data-bs-toggle="dropdown">
+                <div class="d-flex align-items-center">
+                    <img :src="selectedCountry.flagUrl" :alt="selectedCountry.name" class="me-2" style="width: 20px">
+                    <span x-text="selectedCountry.name"></span>
+                </div>
+                <i data-lucide="chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu w-100">
+                <template x-for="country in countries" :key="country.code">
+                    <li>
+                        <button 
+                            class="dropdown-item d-flex align-items-center"
+                            @click="selectedCountry = country; selectedNetwork = country.networks[0]">
+                            <img :src="country.flagUrl" :alt="country.name" class="me-2" style="width: 20px">
+                            <span x-text="country.name"></span>
+                        </button>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Network Provider</label>
+        <select 
+            class="form-select"
+            x-model="selectedNetwork">
+            <template x-for="network in selectedCountry.networks" :key="network">
+                <option :value="network" x-text="network"></option>
+            </template>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <img :src="selectedCountry.flagUrl" :alt="selectedCountry.name" style="width: 20px">
+                <span class="ms-1" x-text="selectedCountry.dialCode"></span>
+            </span>
+            <input
+                type="tel"
+                class="form-control"
+                x-model="phoneNumber"
+                :placeholder="'Enter phone number'">
+        </div>
+        <small class="text-muted">
+            Enter the phone number associated with your <span x-text="selectedNetwork"></span> account
+        </small>
+    </div>
+</div>
